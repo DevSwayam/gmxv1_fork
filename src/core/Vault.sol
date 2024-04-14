@@ -126,7 +126,7 @@ contract Vault is ReentrancyGuard, IVault {
     mapping (address => uint256) public override lastFundingTimes;
 
     // positions tracks all open positions
-    mapping (bytes32 => Position) public positions;
+    mapping (bytes32 => Position) private positions;
 
     // feeReserves tracks the amount of fees per token
     mapping (address => uint256) public override feeReserves;
@@ -135,7 +135,7 @@ contract Vault is ReentrancyGuard, IVault {
     mapping (address => uint256) public override globalShortAveragePrices;
     mapping (address => uint256) public override maxGlobalShortSizes;
 
-    mapping (uint256 => string) public errors;
+    mapping (uint256 => string) private errors;
 
     event BuyUSDG(address account, address token, uint256 tokenAmount, uint256 usdgAmount, uint256 feeBasisPoints);
     event SellUSDG(address account, address token, uint256 usdgAmount, uint256 tokenAmount, uint256 feeBasisPoints);
