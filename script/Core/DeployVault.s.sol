@@ -86,7 +86,7 @@ contract DeployVault is Script{
       "Vault: forbidden",
       "Vault: maxGasPrice exceeded"
     ];  
-
+    // @dev please seperate contracts as much as can this is not a good practice
     function run() external returns( address,address,address,address,address,address,address,address){
         vm.startBroadcast();
 

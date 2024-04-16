@@ -39,5 +39,5 @@ ifeq ($(findstring --network sepolia,$(ARGS)),--network sepolia)
 endif
 
 deploy vault:
-	forge script script/Deploy/DeployVault.s.sol:DeployVault $(NETWORK_ARGS)
+	forge script script/Core/DeployVault.s.sol:DeployVault $(NETWORK_ARGS)
 
