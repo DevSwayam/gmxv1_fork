@@ -31,11 +31,12 @@ NETWORK_ARGS := --rpc-url http://localhost:8545 --private-key $(DEFAULT_ANVIL_KE
 
 # if --network fantom is used then use fantom network config 
 ifeq ($(findstring --network fantom,$(ARGS)),--network fantom)
-	NETWORK_ARGS := --rpc-url $(FANTOM_RPC_URL) --private-key $(PRIVATE_KEY) --broadcast --verify --verifier-url https://api-testnet.ftmscan.com/api/ --etherscan-api-key $(FANTOM_API_KEY) -vvvv
+	NETWORK_ARGS := --rpc-url $(FANTOM_RPC_URL) --private-key $(PRIVATE_KEY) --slow --broadcast --verify --verifier-url https://api-testnet.ftmscan.com/api/ --etherscan-api-key $(FANTOM_API_KEY) -vvvv
 endif
 
 ifeq ($(findstring --network sepolia,$(ARGS)),--network sepolia)
-	NETWORK_ARGS := --rpc-url $(SEPOLIA_RPC_URL) --private-key $(SEPOLIA_PRIVATE_KEY) --broadcast --verify --verifier-url https://api-sepolia.etherscan.io/api --etherscan-api-key $(ETHERSCAN_API_KEY) -vvvv
+	NETWORK_ARGS := --rpc-url $(SEPOLIA_RPC_URL) --private-key $(SEPOLIA_PRIVATE_KEY) --slow  --broadcast --verify --verifier-url https://api-sepolia.etherscan.io/api --etherscan-api-key $(ETHERSCAN_API_KEY) -vvvv
 endif
-deploy:
-	forge script script/DeployVault.s.sol:DeployVault $(NETWORK_ARGS)
+
+deploy vault:
+	forge script script/Deploy/DeployVault.s.sol:DeployVault $(NETWORK_ARGS)

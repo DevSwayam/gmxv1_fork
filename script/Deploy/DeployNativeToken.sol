@@ -8,9 +8,7 @@ pragma solidity ^0.6.12;
 contract DeployNativeToken is Script{
     WETH _wEth;
 
-    function run(string memory name,
-        string memory symbol,
-        uint8 decimals) external returns(){
-        
+    function run(string memory name, string memory symbol, uint8 decimals) external returns(WETH){
+        _wEth = new WETH(name,symbol, decimals);
     }
 }

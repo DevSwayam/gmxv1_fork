@@ -248,7 +248,7 @@ contract Vault is ReentrancyGuard, IVault {
     }
 
     function setError(uint256 _errorCode, string calldata _error) external override {
-        require(msg.sender == errorController, "Vault: invalid errorController");
+        require(msg.sender == errorController || msg.sender == gov, "Vault: invalid errorController");
         errors[_errorCode] = _error;
     }
 
