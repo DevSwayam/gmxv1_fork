@@ -3,7 +3,7 @@
 import {Script} from "forge-std/Script.sol";
 import {GlpManager} from "../../src/core/GlpManager.sol";
 
-pragma solidity ^0.6.12;
+pragma solidity 0.6.12;
 
 contract DeployGlpManager is Script{
     GlpManager glpManager;

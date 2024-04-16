@@ -13,6 +13,7 @@ import {VaultErrorController} from "../../src/core/VaultErrorController.sol";
 import {VaultUtils} from "../../src/core/VaultUtils.sol";
 
 pragma solidity 0.6.12;
+pragma experimental ABIEncoderV2;
 
 contract DeployVault is Script{
 
@@ -26,6 +27,7 @@ contract DeployVault is Script{
     GlpManager _glpManager;
     VaultErrorController _vaultErrorController;
     VaultUtils _vaultUtils;
+
     string[56] _errors = [
       "Vault: zero error",
       "Vault: already initialized",
@@ -85,7 +87,7 @@ contract DeployVault is Script{
       "Vault: maxGasPrice exceeded"
     ];  
 
-    function run() external returns(Vault){
+    function run() external returns( address,address,address,address,address,address,address,address){
         vm.startBroadcast();
 
         //Deploying USDG Contract
@@ -162,6 +164,15 @@ contract DeployVault is Script{
         _vault.setVaultUtils(_vaultUtils);
 
         vm.stopBroadcast();
-        return(_vault);
+
+        return(
+           address(_vault),
+           address(_usdg),
+           address(_router),
+           address(_wEth),
+           address(_vaultPriceFeed),
+           address(_shortsTracker),
+           address(_vaultErrorController),
+           address(_vaultUtils));
     }
 }

@@ -40,3 +40,4 @@ endif
 
 deploy vault:
 	forge script script/Deploy/DeployVault.s.sol:DeployVault $(NETWORK_ARGS)
+
