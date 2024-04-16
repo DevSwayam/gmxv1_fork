@@ -87,7 +87,7 @@ contract DeployVault is Script{
       "Vault: maxGasPrice exceeded"
     ];  
     // @dev please seperate contracts as much as can this is not a good practice
-    function run() external returns( address,address,address,address,address,address,address,address){
+    function run() external returns( address,address,address,address,address,address,address,address,address,address){
         vm.startBroadcast();
 
         //Deploying USDG Contract
@@ -171,7 +171,9 @@ contract DeployVault is Script{
            address(_router),
            address(_wEth),
            address(_vaultPriceFeed),
+           address(_glp),
            address(_shortsTracker),
+           address(_glpManager),
            address(_vaultErrorController),
            address(_vaultUtils));
     }
