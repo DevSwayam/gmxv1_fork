@@ -4,13 +4,13 @@ import {Script} from "forge-std/Script.sol";
 import {Vault} from "../../src/core/Vault.sol";
 import {USDG} from "../../src/tokens/USDG.sol";
 import {Router} from "../../src/core/Router.sol";
-import {WETH} from "../../src/tokens/WETH.sol";
 import {VaultPriceFeed} from "../../src/core/VaultPriceFeed.sol";
 import {GLP} from "../../src/gmx/GLP.sol";
 import {GlpManager} from "../../src/core/GlpManager.sol";
 import {ShortsTracker} from "../../src/core/ShortsTracker.sol";
 import {VaultErrorController} from "../../src/core/VaultErrorController.sol";
 import {VaultUtils} from "../../src/core/VaultUtils.sol";
+import {WETH} from "../../src/tokens/WETH.sol"; 
 
 pragma solidity 0.6.12;
 pragma experimental ABIEncoderV2;
@@ -87,7 +87,7 @@ contract DeployVault is Script{
       "Vault: maxGasPrice exceeded"
     ];  
     // @dev please seperate contracts as much as can this is not a good practice
-    function run() external returns( address,address,address,address,address,address,address,address,address,address){
+    function run(address _wEthAddress) external returns( address,address,address,address,address,address,address,address,address,address){
         vm.startBroadcast();
 
         //Deploying USDG Contract
@@ -96,11 +96,8 @@ contract DeployVault is Script{
         // Deploying USDG contract
         _usdg = new USDG(address(_vault));
 
-        //Deploying Weth as a Native Token
-        _wEth = new WETH("Wrapped Eth","WETH", 18);
-
         // Deploying Router contract for users
-        _router = new Router(address(_vault),address(_usdg), address(_wEth));
+        _router = new Router(address(_vault),address(_usdg), _wEthAddress);
 
         _vaultPriceFeed = new VaultPriceFeed();
 
