@@ -12,7 +12,7 @@ contract PancakeFactory is IPancakeFactory {
     address public wFtmBusdPair;
     address public btcwFtmPair;
 
-    constructor(address[] memory _addresses) public {
+    constructor(address[5] memory _addresses) public {
         btc = _addresses[0];
         wFtm = _addresses[1];
         busd = _addresses[2];
