@@ -86,8 +86,9 @@ contract DeployVault is Script{
       "Vault: forbidden",
       "Vault: maxGasPrice exceeded"
     ];  
+
     // @dev please seperate contracts as much as can this is not a good practice
-    function run(address _wEthAddress) external returns( address,address,address,address,address,address,address,address,address,address){
+    function run() external returns( address,address,address,address,address,address,address,address,address,address){
         vm.startBroadcast();
 
         //Deploying USDG Contract
@@ -96,8 +97,10 @@ contract DeployVault is Script{
         // Deploying USDG contract
         _usdg = new USDG(address(_vault));
 
+        // Deploying WETH Contract
+        _wEth = new WETH("Wrapped Ether","WETH",18);
         // Deploying Router contract for users
-        _router = new Router(address(_vault),address(_usdg), _wEthAddress);
+        _router = new Router(address(_vault),address(_usdg), address(_wEth));
 
         _vaultPriceFeed = new VaultPriceFeed();
 

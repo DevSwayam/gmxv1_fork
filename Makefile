@@ -41,3 +41,6 @@ endif
 deploy vault:
 	forge script script/Core/DeployVault.s.sol:DeployVault $(NETWORK_ARGS)
 
+deploy entryPoint:
+	forge script script/EntryPoint.sol:EntryPoint $(NETWORK_ARGS)
+
